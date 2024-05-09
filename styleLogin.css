@@ -1,0 +1,74 @@
+body {
+    background-image: url(./project_images/login_background.png);
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 300px;
+    background-color: plum;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+h2 {
+    color: rgb(142, 127, 42);
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+button {
+    font-weight: bold;
+    padding: 10px;
+    background-color: green;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+#forgotLink {
+    font-weight: bold;
+    width: 250px;
+    padding: 10px 20px;
+    background-color: red;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 2px solid black;
+    margin-top: 2px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: none;
+}

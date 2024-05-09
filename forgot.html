@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="styleForgot.css">
+</head>
+<body>
+    <div class="forgot-container">
+        <h2>Forgot Password</h2>
+        <form id="forgotPasswordForm">
+            <div id="errorMessage" class="error-message"></div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="securityQuestionContainer" style="display: none;">
+            <label for="securityQuestion">Security Question:</label>
+            <div id="securityQuestion"></div>
+            <label for="securityAnswer">Answer:</label>
+            <input type="text" id="securityAnswer" name="securityAnswer" required>
+            <button type="button" id="submitSecurityAnswer">Submit</button>
+        </div>
+        <button id="returnToLogin">Return to Login</button>
+    </div>
+    <script>
+        // Goal is to ask security question specific to the user and return password if answer is correct
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+        const errorMessageContainer = document.getElementById('errorMessage');
+        const securityQuestionContainer = document.getElementById('securityQuestionContainer');
+        const securityQuestion = document.getElementById('securityQuestion');
+        const submitSecurityAnswer = document.getElementById('submitSecurityAnswer');
+        const returnToLogin = document.getElementById('returnToLogin');
+
+        // Fetch login data from login.json
+        fetch('login.json')
+            .then(response => response.json())
+            .then(data => {
+                const loginData = data;
+
+                forgotPasswordForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const username = document.getElementById('username').value.trim();
+
+                    // Clear previous error messages
+                    errorMessageContainer.textContent = '';
+                    securityQuestionContainer.style.display = 'none';
+
+                    // Checking if the username exists
+                    const user = loginData.find(user => user.username === username);
+                    if (user) {
+                        securityQuestionContainer.style.display = 'block';
+                        // Displaying the security question
+                        securityQuestion.textContent = user.secret_question;
+                    } else {
+                        displayErrorMessage('Invalid username');
+                    }
+                });
+                
+                // Event Listener for when security question is answered
+                submitSecurityAnswer.addEventListener('click', () => {
+                    const username = document.getElementById('username').value.trim();
+                    const securityAnswer = document.getElementById('securityAnswer').value.trim();
+
+                    // Clear previous error messages
+                    errorMessageContainer.textContent = '';
+
+                    // Check if the security answer is correct
+                    const user = loginData.find(user => user.username === username);
+                    if (user && user.secret_answer === securityAnswer) {
+                        displayErrorMessage(`Your password is: ${user.password}`);
+                    } else {
+                        displayErrorMessage('Incorrect security answer');
+                    }
+                });
+
+                function displayErrorMessage(message) {
+                    errorMessageContainer.textContent = message;
+                    errorMessageContainer.style.display = 'block';
+                }
+
+                // Event Listener to return back to Login site
+                returnToLogin.addEventListener('click', () => {
+                    window.location.href = 'login.html';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching login data:', error);
+            });
+    </script>
+</body>
+</html>

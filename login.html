@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styleLogin.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div id="errorMessage" class="error-message"></div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <label for="totpCode">Authentication Code:</label>
+            <input type="text" id="totpCode" name="totpCode" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="forgotLink">Forgot Password?</button>
+    </div>
+    <audio id="clickingSound">
+        <source src="http://localhost:8000/./project_images/click.mp3" type="audio/mpeg">
+    </audio>
+    <script type="module">
+        // Imported this library for OTP generation
+        // Was trying 'npm install' but had some problems, so used skypack cdn link as suggested by Gemini
+        import { TOTP } from 'https://cdn.skypack.dev/totp-generator'
+        // Fetch login data from login.json, using fetch API
+        fetch('login.json')
+            .then(response => response.json())
+            .then(data => {
+                const loginData = data;
+
+                const loginForm = document.getElementById('loginForm');
+                const errorMessageContainer = document.getElementById('errorMessage');
+                const forgotLink = document.getElementById('forgotLink');
+                const clickSound = document.getElementById('clickingSound');
+
+                loginForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    const totpCode = document.getElementById('totpCode').value.trim();
+                    
+                    // Clear previous error messages
+                    errorMessageContainer.textContent = '';
+
+                    // Validate input
+                    if (!username || !password || !totpCode) {
+                        displayErrorMessage('Please enter both username, password and authentication code');
+                        return;
+                    }
+
+                    // Check if the entered credentials match
+                    const user = loginData.find(user => user.username === username && user.password === password);
+                    if (user) {
+                        //Verify TOTP code
+                        const { otp, expires } = TOTP.generate(user.totpKey)
+                        // The added clause of 230917 can be used, if not wanting to generate TOTP (for checking purposes)
+                        if(totpCode===otp || totpCode==='230917'){
+                            // Redirect to dating.html if credentials are valid
+                            window.location.href = 'dating.html';
+                        }else{
+                            displayErrorMessage('Invalid authentication code')
+                        }    
+                    } else {
+                        displayErrorMessage('Invalid username or password');
+                    }
+
+                    clickSound.play();
+                });
+
+                function displayErrorMessage(message) {
+                    errorMessageContainer.textContent = message;
+                    errorMessageContainer.style.display = 'block';
+                }
+
+                // Event listener for going to the Forgot Password site
+                forgotLink.addEventListener('click', () => {
+                    window.location.href = 'forgot.html';
+                    clickSound.play();
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching login data:', error);
+            });
+    </script>
+</body>
+</html>

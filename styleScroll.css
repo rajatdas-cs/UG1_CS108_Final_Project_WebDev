@@ -1,0 +1,65 @@
+body {
+  background-color: orange;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: plum;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.card {
+  width: 300px;
+  background-color: yellow;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.card h3 {
+  margin-top: 10px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.heart-icons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.heart-icons i {
+  color: black;
+  margin: 0 2px;
+}
+
+.heart-icons i.fas {
+  color: red;
+}
+
+button {
+  font-weight: bold;
+  padding: 10px;
+  background-color: rgb(146, 196, 71);
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 2px solid black;
+}

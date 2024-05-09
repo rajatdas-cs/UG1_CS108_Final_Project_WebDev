@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(214, 52, 79);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.match-container {
+    width: 500px;
+    background-color: plum;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+h1 {
+    color: rgb(138, 104, 19);
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.match-card {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 2px solid black;
+}
+
+.match-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.match-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.match-card p {
+    margin: 5px 0;
+}

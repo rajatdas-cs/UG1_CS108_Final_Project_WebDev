@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dating Main Page</title>
+  <link rel="stylesheet" href="styleDating.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Try Your Luck</h1>
+    <form id="dating-form">
+      <label for="roll-number">IITB Roll Number:</label>
+      <input type="text" id="roll-number" name="roll-number" required>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="year-of-study">Year of Study:</label>
+      <input type="text" id="year-of-study" name="year-of-study" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+
+      <label for="gender">Gender:</label>
+      <div class="radio-group">
+        <input type="radio" id="gender-male" name="gender" value="Male" required>
+        <label for="gender-male">Male</label>
+        <input type="radio" id="gender-female" name="gender" value="Female" required>
+        <label for="gender-female">Female</label>
+        <input type="radio" id="gender-other" name="gender" value="Other" required>
+        <label for="gender-other">Other</label>
+      </div>
+
+      <!-- Implementing radioboxes with options from the fields in students.json -->
+      <label for="interests">Interests:</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="interest-traveling" name="interests" value="Traveling">
+        <label for="interest-traveling">Traveling</label>
+        <input type="checkbox" id="interest-sports" name="interests" value="Sports">
+        <label for="interest-sports">Sports</label>
+        <input type="checkbox" id="interest-movies" name="interests" value="Movies">
+        <label for="interest-movies">Movies</label>
+        <input type="checkbox" id="interest-music" name="interests" value="Music">
+        <label for="interest-music">Music</label>
+        <input type="checkbox" id="interest-literature" name="interests" value="Literature">
+        <label for="interest-literature">Literature</label>
+        <input type="checkbox" id="interest-technology" name="interests" value="Technology">
+        <label for="interest-technology">Technology</label>
+        <input type="checkbox" id="interest-fashion" name="interests" value="Fashion">
+        <label for="interest-fashion">Fashion</label>
+        <input type="checkbox" id="interest-art" name="interests" value="Art">
+        <label for="interest-art">Art</label>
+      </div>
+
+      <!-- Implementing checklists with options from the fields in students.json -->
+      <label for="hobbies">Hobbies:</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="hobby-reading" name="hobbies" value="Reading">
+        <label for="hobby-reading">Reading</label>
+        <input type="checkbox" id="hobby-cooking" name="hobbies" value="Cooking">
+        <label for="hobby-cooking">Cooking</label>
+        <input type="checkbox" id="hobby-coding" name="hobbies" value="Coding">
+        <label for="hobby-coding">Coding</label>
+        <input type="checkbox" id="hobby-gardening" name="hobbies" value="Gardening">
+        <label for="hobby-gardening">Gardening</label>
+        <input type="checkbox" id="hobby-painting" name="hobbies" value="Painting">
+        <label for="hobby-painting">Painting</label>
+        <input type="checkbox" id="hobby-youtube" name="hobbies" value="Watching YouTube/Instagram">
+        <label for="hobby-youtube">Watching YouTube/Instagram</label>
+        <input type="checkbox" id="hobby-music-instruments" name="hobbies" value="Playing musical instruments">
+        <label for="hobby-music-instruments">Playing musical instruments</label>
+        <input type="checkbox" id="hobby-photography" name="hobbies" value="Photography">
+        <label for="hobby-photography">Photography</label>
+      </div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <button type="submit">Submit</button>
+      <!-- Return back to Login Site -->
+      <button type="button" class="red" onclick="window.location.href='login.html'">Logout</button>
+      <button id="scrollOrSwipe">See for Yourself</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
